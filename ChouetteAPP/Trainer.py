@@ -2,6 +2,7 @@ import tensorflow as tf
 from .utils import load_config
 from .ChouetteAPIClient import ChouetteAPIClient
 
+#This class is a model agnostic trainer
 class Trainer:
     def __init__(self):
         self.APIClient = ChouetteAPIClient()
@@ -15,9 +16,11 @@ class Trainer:
         self.validation_dataset = None
         self.loadDataset()
 
+    #Doawnload the dataset and load it
     def loadDataset(self):
         self.APIClient.getDataset(self.dataset_params["start_date"], 
                                   self.dataset_params["end_date"])
+        
         self.train_dataset, self.validation_dataset = tf.keras.preprocessing.image_dataset_from_directory(
             directory=self.dataset_params["path"],
             labels="inferred",
@@ -32,6 +35,7 @@ class Trainer:
             verbose=True
             )
     
+    #Start the training of the model
     def train(self, model):
         model.compile(**self.compile_params)
         model.fit(

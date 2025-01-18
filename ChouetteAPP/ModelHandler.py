@@ -7,6 +7,7 @@ class ModelHandler:
         self.model_config = load_config("config/model_config.json")
         self.model = self.initModel()
     
+    #Initialize the right version of the model
     def initModel(self):
         # Mapping model names to their corresponding Keras applications
         model_map = {
