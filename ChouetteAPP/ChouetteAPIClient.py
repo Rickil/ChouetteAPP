@@ -2,16 +2,18 @@ import httpx
 import os
 import shutil
 from tqdm import tqdm
+from .utils import load_config
 
 #This class handles the communication with the Chouette API
 class ChouetteAPIClient:
 
-    def __init__(self, login_url, dataset_url, username, password):
-        self.login_url = login_url
-        self.dataset_url = dataset_url
-        self.username = username
-        self.password = password
-        self.token = self.login(username, password)
+    def __init__(self):
+        api_config = load_config("config/api_config.json")
+        self.login_url = api_config["login_url"]
+        self.dataset_url = api_config["dataset_url"]
+        self.username = os.getenv("API_USERNAME")
+        self.password = os.getenv("API_PASSWORD")
+        self.token = self.login(self.username, self.password)
     
     #Login the user to get his token
     def login(self, username, password):
@@ -45,5 +47,5 @@ class ChouetteAPIClient:
             os.makedirs(f"data/{tag}")
             urls = self.getAllUrlByTag(tag, start_date, end_date)
             for i, image_url in enumerate(tqdm(urls, desc=f"Downloading {tag}", leave=False)):
-                save_path = f"data/{tag}/{i:04d}.png"
+                save_path = f"data/{tag}/{tag}_{i:04d}.png"
                 self.getImage(image_url, save_path)

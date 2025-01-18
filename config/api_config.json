@@ -1,0 +1,4 @@
+{
+    "login_url": "https://api.staging.chouette.vision/api/users/auth/",
+    "dataset_url": "https://api.staging.chouette.vision/api/jobs/get-images/"
+}

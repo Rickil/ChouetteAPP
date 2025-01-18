@@ -1,0 +1,6 @@
+{
+    "include_top": true,
+    "weights": null,
+    "input_shape": [256, 256, 3],
+    "classes": 3
+}
