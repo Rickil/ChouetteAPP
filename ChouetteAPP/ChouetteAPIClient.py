@@ -2,15 +2,13 @@ import httpx
 import os
 import shutil
 from tqdm import tqdm
-from .utils import load_config
 
 #This class handles the communication with the Chouette API
 class ChouetteAPIClient:
 
     def __init__(self):
-        api_config = load_config("config/api_config.json")
-        self.login_url = api_config["login_url"]
-        self.dataset_url = api_config["dataset_url"]
+        self.login_url = os.getenv("API_LOGIN_URL")
+        self.dataset_url = os.getenv("API_DATASET_URL")
         self.username = os.getenv("API_USERNAME")
         self.password = os.getenv("API_PASSWORD")
         self.token = self.login(self.username, self.password)

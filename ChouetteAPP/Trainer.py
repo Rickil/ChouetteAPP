@@ -1,7 +1,6 @@
 import tensorflow as tf
 from .utils import load_config
 from .ChouetteAPIClient import ChouetteAPIClient
-
 #This class is a model agnostic trainer
 class Trainer:
     def __init__(self):
@@ -34,12 +33,37 @@ class Trainer:
             subset="both",
             verbose=True
             )
-    
+
+        #normalize the dataset
+        normalization = tf.keras.layers.Rescaling(1./255)
+        self.train_dataset = self.train_dataset.map(lambda x, y: (normalization(x), y))
+        self.validation_dataset = self.validation_dataset.map(lambda x, y: (normalization(x), y))
+
     #Start the training of the model
-    def train(self, model):
-        model.compile(**self.compile_params)
-        model.fit(
+    def train(self, modelHandler, save=True):
+
+        # Map loss function strings to actual Keras loss functions
+        loss_function_map = {
+            "CategoricalCrossentropy": tf.losses.CategoricalCrossentropy,
+            # Add more as needed
+        }
+
+        modelHandler.model.compile(
+            optimizer=self.compile_params["optimizer"],
+            metrics=self.compile_params["metrics"],
+            loss=loss_function_map[self.compile_params["loss"]]()
+        )
+
+        modelHandler.model.fit(
             self.train_dataset,
             validation_data= self.validation_dataset,
             epochs=self.training_params["epochs"]
         )
+
+        if save:
+            modelHandler.save(self.dataset_params["start_date"], 
+                                  self.dataset_params["end_date"])
+            
+    #evaluate the model on the validation dataset
+    def evaluate(self, modelHandler):
+        modelHandler.model.evaluate(self.validation_dataset)
