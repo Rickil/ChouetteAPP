@@ -8,7 +8,20 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 class ModelHandler:
+    """
+    Handles the machine learning model, including training, saving, loading, and evaluation.
+
+    Attributes:
+        model_config (dict): Configuration for the model loaded from a JSON file.
+        model_name (str): The name of the model.
+        class_names (list): List of class names for predictions.
+        model (tf.keras.Model): The machine learning model.
+        trainer (Trainer): Instance of the Trainer class for dataset handling and training.
+    """
     def __init__(self):
+        """
+        Initializes the ModelHandler instance, including the model and the trainer.
+        """
         self.model_config = load_config("config/model_config.json")
         self.model_name = self.model_config["name"]
         self.class_names = self.model_config["class_names"]
@@ -17,8 +30,10 @@ class ModelHandler:
 
         self.trainer = Trainer()
 
-    #Save the model weights in the database
     def save(self):
+        """
+        Saves the model weights to the file system and records the model in the database.
+        """
         start_date = self.trainer.dataset_params["start_date"]
         end_date = self.trainer.dataset_params["end_date"]
         os.makedirs("weights", exist_ok=True)
@@ -36,8 +51,17 @@ class ModelHandler:
         session.add(model)
         session.commit()
     
-    #Load model weights trained on a given dataset from the database
     def loadWeights(self, start_date, end_date):
+        """
+        Loads model weights trained on a specific dataset from the database.
+
+        Args:
+            start_date (str): Start date of the dataset in "YYYY-MM-DD" format.
+            end_date (str): End date of the dataset in "YYYY-MM-DD" format.
+
+        Raises:
+            ValueError: If no pretrained model weights is found for the specified dataset dates.
+        """
         session = Session(engine)
         stmt = select(Model).where(Model.model_name == self.model_name,
                                    Model.dataset_start_date==strToDate(start_date),
@@ -49,15 +73,10 @@ class ModelHandler:
         weights_path = row[0].weights_path
         self.model.load_weights(weights_path)
     
-    #Load a new model from the database with pretrained weights
-    def loadModel(self, model_name, start_date, end_date):
-        self.model_name = model_name
-        self.initModel()
-        self.loadWeights(start_date, end_date)
-
-    
-    #Initialize the right version of the model
     def initModel(self):
+        """
+        Initializes the model based on the configuration.
+        """
         # Mapping model names to their corresponding Keras applications
         model_map = {
             "ResNet50": tf.keras.applications.ResNet50,
@@ -83,11 +102,26 @@ class ModelHandler:
             self.load(start_date, end_date)
     
     def train(self, save=True):
+        """
+        Trains the model using the trainer and save it.
+
+        Args:
+            save (bool): Whether to save the model after training. Defaults to True.
+        """
         self.trainer.train(self.model)
         if save:
             self.save()
     
     def predict(self, image_path):
+        """
+        Makes a prediction on a single image.
+
+        Args:
+            image_path (str): Path to the image to predict.
+
+        Returns:
+            str: The predicted class name.
+        """
         image = load_img(image_path, target_size=self.model_config["input_shape"][:2])
         image = img_to_array(image)
         image = image / 255.0
@@ -98,3 +132,19 @@ class ModelHandler:
         class_prediction = self.class_names[prediction]
 
         return class_prediction
+    
+    def evaluate(self, path=None, start_date=None, end_date=None):
+        """
+        Evaluates the model on a test dataset.
+
+        Args:
+            path (str, optional): Path to the test dataset. If None, downloads the dataset using API.
+            start_date (str, optional): Start date for downloading the test dataset (if path is None).
+            end_date (str, optional): End date for downloading the test dataset (if path is None).
+        """
+        if not path:
+            path = self.trainer.APIClient.getDataset(self.trainer.dataset_params["path"],
+                                    start_date, 
+                                    end_date)
+        self.trainer.loadDataset(path, test_dataset=True)
+        self.model.evaluate(self.trainer.test_dataset)

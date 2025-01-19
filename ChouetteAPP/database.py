@@ -9,6 +9,16 @@ import os
 Base = declarative_base()
 
 class Model(Base):
+    """
+    Represents the database format of a model and the informations of the dataset it was pretrained on.
+
+    Attributes:
+        id (int): The primary key of the model.
+        model_name (str): The name of the model.
+        weights_path (str): The path to the model's weights.
+        dataset_start_date (date): The start date of the dataset used for training.
+        dataset_end_date (date): The end date of the dataset used for training.
+    """
     __tablename__ = "models"
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -18,6 +28,12 @@ class Model(Base):
     dataset_end_date: Mapped[date] = mapped_column(Date)
 
     def __repr__(self):
+        """
+        Returns a string representation of the model.
+
+        Returns:
+            str: The string representing the model.
+        """
         return f"({self.model_name}, {self.dataset_start_date}:{self.dataset_end_date}), path: {self.weights_path}"
 
 #Engine creation
