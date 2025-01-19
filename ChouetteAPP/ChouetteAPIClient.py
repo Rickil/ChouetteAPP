@@ -1,6 +1,5 @@
 import httpx
 import os
-import shutil
 from tqdm import tqdm
 
 #This class handles the communication with the Chouette API
@@ -34,16 +33,20 @@ class ChouetteAPIClient:
         urls = [item["media"] for item in response.json()]
         return urls
     
-    #Download the dataset and stores it in a folder named "data"
-    def getDataset(self, start_date, end_date):
-        if os.path.exists("data"):
-            shutil.rmtree("data")
-        os.makedirs("data")
+    #Download the dataset and stores it in the given path
+    def getDataset(self, path, start_date, end_date):
+        dataset_path = os.path.join(path, f"{start_date}_{end_date}")
+        
+        if not os.path.exists(dataset_path):
+            os.makedirs(dataset_path)
 
-        tags = ["vine", "ground", "grass"]
-        for tag in tqdm(tags, desc="Processing tags"):
-            os.makedirs(f"data/{tag}")
-            urls = self.getAllUrlByTag(tag, start_date, end_date)
-            for i, image_url in enumerate(tqdm(urls, desc=f"Downloading {tag}", leave=False)):
-                save_path = f"data/{tag}/{tag}_{i:04d}.png"
-                self.getImage(image_url, save_path)
+            tags = ["vine", "ground", "grass"]
+            for tag in tqdm(tags, desc="Processing tags"):
+                tag_path = os.path.join(dataset_path, tag)
+                os.makedirs(tag_path)
+                urls = self.getAllUrlByTag(tag, start_date, end_date)
+                for i, image_url in enumerate(tqdm(urls, desc=f"Downloading {tag}", leave=False)):
+                    image_path = os.path.join(tag_path, f"{tag}_{i:04d}.png")
+                    self.getImage(image_url, image_path)
+        
+        return dataset_path

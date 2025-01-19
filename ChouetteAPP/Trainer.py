@@ -1,4 +1,5 @@
 import tensorflow as tf
+import os
 from .utils import load_config
 from .ChouetteAPIClient import ChouetteAPIClient
 #This class is a model agnostic trainer
@@ -13,15 +14,20 @@ class Trainer:
 
         self.train_dataset = None
         self.validation_dataset = None
+        self.test_dataset = None
         self.loadDataset()
 
-    #Doawnload the dataset and load it
-    def loadDataset(self):
-        self.APIClient.getDataset(self.dataset_params["start_date"], 
-                                  self.dataset_params["end_date"])
+    #Download the dataset and load it
+    def loadDataset(self, path=None):
+        #If no path variable is provided, it will download the dataset from tha API, 
+        #otherwise it will load the dataset in the given path
+        if not path:
+            path = self.APIClient.getDataset(self.dataset_params["path"],
+                                    self.dataset_params["start_date"], 
+                                    self.dataset_params["end_date"])
         
         self.train_dataset, self.validation_dataset = tf.keras.preprocessing.image_dataset_from_directory(
-            directory=self.dataset_params["path"],
+            directory=path,
             labels="inferred",
             label_mode = "categorical",
             color_mode="rgb",
@@ -40,7 +46,7 @@ class Trainer:
         self.validation_dataset = self.validation_dataset.map(lambda x, y: (normalization(x), y))
 
     #Start the training of the model
-    def train(self, modelHandler, save=True):
+    def train(self, model):
 
         # Map loss function strings to actual Keras loss functions
         loss_function_map = {
@@ -48,22 +54,14 @@ class Trainer:
             # Add more as needed
         }
 
-        modelHandler.model.compile(
+        model.compile(
             optimizer=self.compile_params["optimizer"],
             metrics=self.compile_params["metrics"],
             loss=loss_function_map[self.compile_params["loss"]]()
         )
 
-        modelHandler.model.fit(
+        model.fit(
             self.train_dataset,
             validation_data= self.validation_dataset,
             epochs=self.training_params["epochs"]
-        )
-
-        if save:
-            modelHandler.save(self.dataset_params["start_date"], 
-                                  self.dataset_params["end_date"])
-            
-    #evaluate the model on the validation dataset
-    def evaluate(self, modelHandler):
-        modelHandler.model.evaluate(self.validation_dataset)
+        )     
