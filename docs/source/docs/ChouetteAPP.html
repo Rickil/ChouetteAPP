@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ChouetteAPP package &#8212; ChouetteAPP 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="chouetteapp-package">
+<h1>ChouetteAPP package<a class="headerlink" href="#chouetteapp-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-ChouetteAPP.ChouetteAPIClient">
+<span id="chouetteapp-chouetteapiclient-module"></span><h2>ChouetteAPP.ChouetteAPIClient module<a class="headerlink" href="#module-ChouetteAPP.ChouetteAPIClient" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ChouetteAPP.ChouetteAPIClient.</span></span><span class="sig-name descname"><span class="pre">ChouetteAPIClient</span></span><a class="reference internal" href="_modules/ChouetteAPP/ChouetteAPIClient.html#ChouetteAPIClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Handles communication with the Chouette API.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.login_url">
+<span class="sig-name descname"><span class="pre">login_url</span></span><a class="headerlink" href="#ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.login_url" title="Link to this definition">¶</a></dt>
+<dd><p>The URL for logging into the API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.dataset_url">
+<span class="sig-name descname"><span class="pre">dataset_url</span></span><a class="headerlink" href="#ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.dataset_url" title="Link to this definition">¶</a></dt>
+<dd><p>The URL for accessing the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.username">
+<span class="sig-name descname"><span class="pre">username</span></span><a class="headerlink" href="#ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.username" title="Link to this definition">¶</a></dt>
+<dd><p>API username loaded from environment variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.password" title="Link to this definition">¶</a></dt>
+<dd><p>API password loaded from environment variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.token">
+<span class="sig-name descname"><span class="pre">token</span></span><a class="headerlink" href="#ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.token" title="Link to this definition">¶</a></dt>
+<dd><p>Authentication token retrieved after logging in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.getAllUrlByTag">
+<span class="sig-name descname"><span class="pre">getAllUrlByTag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/ChouetteAPIClient.html#ChouetteAPIClient.getAllUrlByTag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.getAllUrlByTag" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieves all image URLs associated with a given tag within a date range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<em>str</em>) – The tag to filter images.</p></li>
+<li><p><strong>start_date</strong> (<em>str</em>) – Start date in “YYYY-MM-DD” format.</p></li>
+<li><p><strong>end_date</strong> (<em>str</em>) – End date in “YYYY-MM-DD” format.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of URLs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.getDataset">
+<span class="sig-name descname"><span class="pre">getDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/ChouetteAPIClient.html#ChouetteAPIClient.getDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.getDataset" title="Link to this definition">¶</a></dt>
+<dd><p>Downloads the dataset and stores it in the given path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – The directory path where the dataset will be stored.</p></li>
+<li><p><strong>start_date</strong> (<em>str</em>) – Start date in “YYYY-MM-DD” format.</p></li>
+<li><p><strong>end_date</strong> (<em>str</em>) – End date in “YYYY-MM-DD” format.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The path to the downloaded dataset.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.getImage">
+<span class="sig-name descname"><span class="pre">getImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/ChouetteAPIClient.html#ChouetteAPIClient.getImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.getImage" title="Link to this definition">¶</a></dt>
+<dd><p>Downloads and saves an image from a URL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – The URL of the image.</p></li>
+<li><p><strong>save_path</strong> (<em>str</em>) – The path to save the downloaded image.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.login">
+<span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/ChouetteAPIClient.html#ChouetteAPIClient.login"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient.login" title="Link to this definition">¶</a></dt>
+<dd><p>Logs in to the API and retrieves an authentication token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<em>str</em>) – The username for the API.</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – The password for the API.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The authentication token.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ChouetteAPP.ModelHandler">
+<span id="chouetteapp-modelhandler-module"></span><h2>ChouetteAPP.ModelHandler module<a class="headerlink" href="#module-ChouetteAPP.ModelHandler" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ChouetteAPP.ModelHandler.</span></span><span class="sig-name descname"><span class="pre">ModelHandler</span></span><a class="reference internal" href="_modules/ChouetteAPP/ModelHandler.html#ModelHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Handles the machine learning model, including training, saving, loading, and evaluation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model loaded from a JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler.model_name">
+<span class="sig-name descname"><span class="pre">model_name</span></span><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler.model_name" title="Link to this definition">¶</a></dt>
+<dd><p>The name of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler.class_names">
+<span class="sig-name descname"><span class="pre">class_names</span></span><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler.class_names" title="Link to this definition">¶</a></dt>
+<dd><p>List of class names for predictions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler.model" title="Link to this definition">¶</a></dt>
+<dd><p>The machine learning model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.keras.Model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler.trainer">
+<span class="sig-name descname"><span class="pre">trainer</span></span><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler.trainer" title="Link to this definition">¶</a></dt>
+<dd><p>Instance of the Trainer class for dataset handling and training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="modules/Trainer.html#ChouetteAPP.Trainer.Trainer" title="ChouetteAPP.Trainer.Trainer">Trainer</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/ModelHandler.html#ModelHandler.evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler.evaluate" title="Link to this definition">¶</a></dt>
+<dd><p>Evaluates the model on a test dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the test dataset. If None, downloads the dataset using API.</p></li>
+<li><p><strong>start_date</strong> (<em>str</em><em>, </em><em>optional</em>) – Start date for downloading the test dataset (if path is None).</p></li>
+<li><p><strong>end_date</strong> (<em>str</em><em>, </em><em>optional</em>) – End date for downloading the test dataset (if path is None).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler.initModel">
+<span class="sig-name descname"><span class="pre">initModel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/ModelHandler.html#ModelHandler.initModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler.initModel" title="Link to this definition">¶</a></dt>
+<dd><p>Initializes the model based on the configuration.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler.loadWeights">
+<span class="sig-name descname"><span class="pre">loadWeights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/ModelHandler.html#ModelHandler.loadWeights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler.loadWeights" title="Link to this definition">¶</a></dt>
+<dd><p>Loads model weights trained on a specific dataset from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_date</strong> (<em>str</em>) – Start date of the dataset in “YYYY-MM-DD” format.</p></li>
+<li><p><strong>end_date</strong> (<em>str</em>) – End date of the dataset in “YYYY-MM-DD” format.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If no pretrained model weights is found for the specified dataset dates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/ModelHandler.html#ModelHandler.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler.predict" title="Link to this definition">¶</a></dt>
+<dd><p>Makes a prediction on a single image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>image_path</strong> (<em>str</em>) – Path to the image to predict.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The predicted class name.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/ModelHandler.html#ModelHandler.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler.save" title="Link to this definition">¶</a></dt>
+<dd><p>Saves the model weights to the file system and records the model in the database.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.ModelHandler.ModelHandler.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/ModelHandler.html#ModelHandler.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.ModelHandler.ModelHandler.train" title="Link to this definition">¶</a></dt>
+<dd><p>Trains the model using the trainer and save it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>save</strong> (<em>bool</em>) – Whether to save the model after training. Defaults to True.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ChouetteAPP.Trainer">
+<span id="chouetteapp-trainer-module"></span><h2>ChouetteAPP.Trainer module<a class="headerlink" href="#module-ChouetteAPP.Trainer" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ChouetteAPP.Trainer.Trainer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ChouetteAPP.Trainer.</span></span><span class="sig-name descname"><span class="pre">Trainer</span></span><a class="reference internal" href="_modules/ChouetteAPP/Trainer.html#Trainer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.Trainer.Trainer" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Handles dataset loading and model training.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.Trainer.Trainer.APIClient">
+<span class="sig-name descname"><span class="pre">APIClient</span></span><a class="headerlink" href="#ChouetteAPP.Trainer.Trainer.APIClient" title="Link to this definition">¶</a></dt>
+<dd><p>An instance of the API client for dataset handling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="modules/ChouetteAPIClient.html#ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient" title="ChouetteAPP.ChouetteAPIClient.ChouetteAPIClient">ChouetteAPIClient</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.Trainer.Trainer.dataset_params">
+<span class="sig-name descname"><span class="pre">dataset_params</span></span><a class="headerlink" href="#ChouetteAPP.Trainer.Trainer.dataset_params" title="Link to this definition">¶</a></dt>
+<dd><p>Parameters for loading the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.Trainer.Trainer.compile_params">
+<span class="sig-name descname"><span class="pre">compile_params</span></span><a class="headerlink" href="#ChouetteAPP.Trainer.Trainer.compile_params" title="Link to this definition">¶</a></dt>
+<dd><p>Parameters for compiling the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.Trainer.Trainer.training_params">
+<span class="sig-name descname"><span class="pre">training_params</span></span><a class="headerlink" href="#ChouetteAPP.Trainer.Trainer.training_params" title="Link to this definition">¶</a></dt>
+<dd><p>Parameters for training the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.Trainer.Trainer.train_dataset">
+<span class="sig-name descname"><span class="pre">train_dataset</span></span><a class="headerlink" href="#ChouetteAPP.Trainer.Trainer.train_dataset" title="Link to this definition">¶</a></dt>
+<dd><p>The training dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.data.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.Trainer.Trainer.validation_dataset">
+<span class="sig-name descname"><span class="pre">validation_dataset</span></span><a class="headerlink" href="#ChouetteAPP.Trainer.Trainer.validation_dataset" title="Link to this definition">¶</a></dt>
+<dd><p>The validation dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.data.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.Trainer.Trainer.test_dataset">
+<span class="sig-name descname"><span class="pre">test_dataset</span></span><a class="headerlink" href="#ChouetteAPP.Trainer.Trainer.test_dataset" title="Link to this definition">¶</a></dt>
+<dd><p>The test dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tf.data.Dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.Trainer.Trainer.loadDataset">
+<span class="sig-name descname"><span class="pre">loadDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/Trainer.html#Trainer.loadDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.Trainer.Trainer.loadDataset" title="Link to this definition">¶</a></dt>
+<dd><p>Loads the dataset. Downloads it from the API if no path is provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the dataset. Defaults to None.</p></li>
+<li><p><strong>test_dataset</strong> (<em>bool</em>) – Whether to load the dataset as a test dataset for a model evaluation. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ChouetteAPP.Trainer.Trainer.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/Trainer.html#Trainer.train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.Trainer.Trainer.train" title="Link to this definition">¶</a></dt>
+<dd><p>Trains the given model using the loaded dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>tf.keras.Model</em>) – The TensorFlow/Keras model to train.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ChouetteAPP.database">
+<span id="chouetteapp-database-module"></span><h2>ChouetteAPP.database module<a class="headerlink" href="#module-ChouetteAPP.database" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ChouetteAPP.database.Model">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ChouetteAPP.database.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/database.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.database.Model" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Represents the database format of a model and the informations of the dataset it was pretrained on.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.database.Model.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#ChouetteAPP.database.Model.id" title="Link to this definition">¶</a></dt>
+<dd><p>The primary key of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.database.Model.model_name">
+<span class="sig-name descname"><span class="pre">model_name</span></span><a class="headerlink" href="#ChouetteAPP.database.Model.model_name" title="Link to this definition">¶</a></dt>
+<dd><p>The name of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.database.Model.weights_path">
+<span class="sig-name descname"><span class="pre">weights_path</span></span><a class="headerlink" href="#ChouetteAPP.database.Model.weights_path" title="Link to this definition">¶</a></dt>
+<dd><p>The path to the model’s weights.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.database.Model.dataset_start_date">
+<span class="sig-name descname"><span class="pre">dataset_start_date</span></span><a class="headerlink" href="#ChouetteAPP.database.Model.dataset_start_date" title="Link to this definition">¶</a></dt>
+<dd><p>The start date of the dataset used for training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>date</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ChouetteAPP.database.Model.dataset_end_date">
+<span class="sig-name descname"><span class="pre">dataset_end_date</span></span><a class="headerlink" href="#ChouetteAPP.database.Model.dataset_end_date" title="Link to this definition">¶</a></dt>
+<dd><p>The end date of the dataset used for training.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>date</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">dataset_end_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">date</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">dataset_start_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">date</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">model_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">weights_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ChouetteAPP.utils">
+<span id="chouetteapp-utils-module"></span><h2>ChouetteAPP.utils module<a class="headerlink" href="#module-ChouetteAPP.utils" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ChouetteAPP.utils.load_config">
+<span class="sig-prename descclassname"><span class="pre">ChouetteAPP.utils.</span></span><span class="sig-name descname"><span class="pre">load_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/utils.html#load_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.utils.load_config" title="Link to this definition">¶</a></dt>
+<dd><p>Load configuration from a JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – The path to the JSON configuration file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The parsed JSON configuration as a dictionary.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ChouetteAPP.utils.strToDate">
+<span class="sig-prename descclassname"><span class="pre">ChouetteAPP.utils.</span></span><span class="sig-name descname"><span class="pre">strToDate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChouetteAPP/utils.html#strToDate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ChouetteAPP.utils.strToDate" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a string in the format “YYYY-MM-DD” to a <cite>datetime.date</cite> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>str</strong> (<em>str</em>) – The date string in “YYYY-MM-DD” format.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The converted date object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime.date</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-ChouetteAPP">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-ChouetteAPP" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">ChouetteAPP</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/ChouetteAPIClient.html">ChouetteAPIClient Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/database.html">database module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/ModelHandler.html">ModelHandler Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/Trainer.html">Trainer Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/utils.html">Utils module</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Yanis FARHAT.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/ChouetteAPP.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
