@@ -1,6 +1,8 @@
 import httpx
+import asyncio
 import os
 from tqdm import tqdm
+from tqdm.asyncio import tqdm_asyncio
 
 #This class handles the communication with the Chouette API
 class ChouetteAPIClient:
@@ -40,7 +42,7 @@ class ChouetteAPIClient:
         response = httpx.post(url=self.login_url, json={"username": username, "password": password}, headers=headers)
         return response.json()['token']
     
-    def getImage(self, url, save_path):
+    async def getImage(self, client, url, save_path):
         """
         Downloads and saves an image from a URL.
 
@@ -48,7 +50,7 @@ class ChouetteAPIClient:
             url (str): The URL of the image.
             save_path (str): The path to save the downloaded image.
         """
-        response = httpx.get(url)
+        response = await client.get(url)
         with open(save_path, "wb") as file:
             file.write(response.content)
     
@@ -70,6 +72,27 @@ class ChouetteAPIClient:
         response = httpx.get(url, headers=headers)
         urls = [item["media"] for item in response.json()]
         return urls
+
+    async def downloadImagesByTag(self, tag, tag_path, urls):
+        """
+        Downloads images associated with a given tag and saves them to the specified path.
+
+        This function performs concurrent image downloads using `httpx.AsyncClient` to efficiently 
+        retrieve multiple images associated with the provided URLs. Each image is saved with a 
+        filename that includes the tag and an index to ensure unique filenames.
+
+        Args:
+            tag (str): The tag associated with the images (used for naming and organizing the images).
+            tag_path (str): The directory path where the images will be saved.
+            urls (list): A list of URLs pointing to the images to be downloaded.
+    """
+        limits = httpx.Limits(max_connections=10)  # Limit max concurrent connections to 10
+        async with httpx.AsyncClient(limits=limits) as client:
+            tasks = [
+                self.getImage(client, url, os.path.join(tag_path, f"{tag}_{i:04d}.png"))
+                for i, url in enumerate(urls)
+            ]
+            await tqdm_asyncio.gather(*tasks, desc=f"Downloading {tag}", leave=False)
     
     def getDataset(self, path, start_date, end_date):
         """
@@ -93,8 +116,6 @@ class ChouetteAPIClient:
                 tag_path = os.path.join(dataset_path, tag)
                 os.makedirs(tag_path)
                 urls = self.getAllUrlByTag(tag, start_date, end_date)
-                for i, image_url in enumerate(tqdm(urls, desc=f"Downloading {tag}", leave=False)):
-                    image_path = os.path.join(tag_path, f"{tag}_{i:04d}.png")
-                    self.getImage(image_url, image_path)
+                asyncio.run(self.downloadImagesByTag(tag, tag_path, urls))
         
         return dataset_path
