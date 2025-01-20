@@ -1,0 +1,6 @@
+tensorflow==2.18.0
+SQLAlchemy==2.0.37
+python-dotenv==1.0.1
+httpx==0.28.1
+tqdm==4.67.1
+Sphinx==8.1.3
