@@ -17,8 +17,8 @@ To get started with ChouetteAPP, you need to install the required dependencies.
    ```bash
    pip install -r requirements.txt
    ```
-
-3. After installing the dependencies, you can run the `example.py` file to test different features of the application:
+3. Create a `.env` file by following the exemple of the `.env.exemple`.
+4. After installing the dependencies, you can run the `example.py` file to test different features of the application:
 
    ```bash
    python example.py
@@ -47,7 +47,7 @@ This file contains parameters for the dataset, training configuration, and model
 ```json
 {
     "dataset_params": {
-        "path": "data",  // Path to store the dataset
+        "path": "data",
         "start_date": "2020-01-01",
         "end_date": "2021-01-01"
     },
